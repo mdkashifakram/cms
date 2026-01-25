@@ -1,0 +1,70 @@
+/* .clinic-card {
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.clinic-card h2 {
+  color: #00bfa5;
+  margin-bottom: 5px;
+}
+
+.clinic-card p {
+  text-align: center;
+} */
+.clinic-cards {
+  display: grid; /* Use grid layout for better control */
+  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  gap: 60px; /* Space between cards */
+  margin-top: 20px; /* Space above the card section */
+  margin-left:150px;
+  
+}
+
+.clinic-card {
+  background-color: #fff; /* White background for clarity */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside cards */
+  display: flex; /* Flexbox for internal content alignment */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  height: 200px; /* Fixed height for cards */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.clinic-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow for depth on hover */
+}
+
+.clinic-card h2 {
+  color: #007bff; /* Use primary color for headings */
+  margin-bottom: 10px; /* Space below heading */
+}
+
+.clinic-card p {
+  text-align: center; /* Center align text */
+  color: #6c757d; /* Gray color for paragraph text */
+}
+
+/* Responsive Design: Adjust layout for smaller screens */
+@media (max-width: 768px) {
+  .clinic-cards {
+    grid-template-columns: repeat(2, 1fr); /* Two cards in a row on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .clinic-cards {
+    grid-template-columns: 1fr; /* One card in a row on mobile devices */
+  }
+}

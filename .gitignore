@@ -1,0 +1,112 @@
+# ===========================================
+# CMS .gitignore - Prevent sensitive data exposure
+# ===========================================
+
+# Environment files (CRITICAL - contains secrets)
+# Environment files (CRITICAL - contains secrets)
+.env
+.env.prod
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+*.env
+
+# Application properties with secrets
+application-prod.properties
+application-local.properties
+
+# SSL/TLS certificates and keystores
+*.p12
+*.jks
+*.pem
+*.key
+*.crt
+keystore.p12
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Build outputs
+target/
+build/
+dist/
+*.jar
+*.war
+*.class
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React build
+/Frontend/clinicapp/build
+
+# Java
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+logs/
+*.log
+spring.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Security scan reports (may contain vulnerability details)
+dependency-check-report.*
+security-scan-*.xml
+
+# Reference documentation
+reference/
+
+# Scripts
+Backend/Mapper.py
+cookies.txt
+cookies.txt
+restart/01_COMPLETE_ANALYSIS.md
+restart/02_FIELD_COMPARISON_MATRIX.md
+.gitignore
+restart/README.md
+restart/03_FIX_PLAN.md

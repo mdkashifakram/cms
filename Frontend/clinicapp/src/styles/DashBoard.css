@@ -1,0 +1,105 @@
+
+.dashboard {
+  display: auto ;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  min-height: 100vh; 
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #0056b3, #2a4d70);
+  color: white;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info span {
+  margin-right: 10px;
+  color: #00bfa5;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.clinic-cards {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 20px; */
+  margin-top: 50px;
+}
+
+.add-clinic-card {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  font-size: 48px;
+  color: #00bfa5;
+  cursor: pointer;
+}
+
+/* Responsive Design: Adjust layout for smaller screens */
+@media (max-width: 768px) {
+  .dashboard-header {
+      flex-direction: column; /* Stack header items vertically */
+      align-items: flex-start; /* Align them to the start */
+  }
+
+  .clinic-cards {
+      justify-content: center; /* Center cards on smaller screens */
+      gap: 10px;
+  }
+
+  .add-clinic-card {
+      width: 120px; /* Reduce size on smaller screens */
+      height: 120px;
+      font-size: 36px; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+      padding: 10px; /* Reduce padding for small screens */
+  }
+
+  .menu-icon {
+      font-size: 20px; /* Adjust icon size */
+  }
+
+  .add-clinic-card {
+      width: 100px; /* Further reduce size */
+      height: 100px;
+      font-size: 24px; /* Smaller font for very small screens */
+  }
+
+  .user-info span {
+      font-size: 14px; /* Adjust font size */
+  }
+
+  .user-avatar {
+      width: 30px; /* Adjust avatar size */
+      height: 30px;
+  }
+}
+

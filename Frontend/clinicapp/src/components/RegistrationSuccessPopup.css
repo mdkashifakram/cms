@@ -1,0 +1,168 @@
+/* Overlay for the success popup */
+.success-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.success-popup-card {
+  background-color: #fff;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  width: 550px;
+  max-width: 90vw;
+}
+
+/* Success header - green instead of blue */
+.success-popup-header {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  text-align: center;
+  background: linear-gradient(45deg, #0056b3, #2a4d70);
+  border-bottom: 2px solid #e0e0e0;
+  color: #f8f4f4;
+  display: flex;
+  border-radius: 4px;
+}
+
+.success-popup-header h2 {
+  margin-left: auto;
+  padding: 10px;
+}
+
+.success-popup-close-btn {
+  background-color: white;
+  color: rgb(161, 160, 160);
+  padding: 8px;
+  border-radius: 500px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.success-popup-close-btn:hover {
+  background-color: rgb(197, 195, 195);
+}
+
+.success-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.success-icon {
+  font-size: 48px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+/* Prominent Patient ID display */
+.patient-id-display {
+  background-color: #f8f9fa;
+  border: 2px dashed #007bff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.patient-id-display label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.patient-id-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Patient summary info */
+.patient-summary {
+  text-align: left;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.patient-summary p {
+  margin: 8px 0;
+  color: #555;
+}
+
+/* Button container */
+.success-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.success-button-container .close-btn {
+  background-color: #6c757d;
+  width: auto;
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.success-button-container .close-btn:hover {
+  background-color: #5a6268;
+}
+
+.success-button-container .create-appointment-btn {
+  background-color: #007bff;
+  width: auto;
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.success-button-container .create-appointment-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .success-popup-card {
+    width: 95vw;
+    padding: 15px;
+  }
+
+  .patient-id-value {
+    font-size: 24px;
+  }
+
+  .success-button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .success-button-container .close-btn,
+  .success-button-container .create-appointment-btn {
+    width: 100%;
+  }
+}
