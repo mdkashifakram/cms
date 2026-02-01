@@ -185,7 +185,7 @@ const PrescriptionAdvanced = () => {
             if (data && data.id) {
               setPrescriptionId(data.id);
               setIsEditMode(true);
-              setPrescription(data);
+              loadExistingPrescription(data.id);
             }
           }
         } catch (error) {
@@ -861,7 +861,7 @@ const PrescriptionAdvanced = () => {
                     <Paper sx={{ p: "10px", width: "250px", mt: 1.25 }}>
                       <Autocomplete
                         freeSolo
-                        options={pastSuggestions}
+                        options={pastSuggestions || []}
                         value={searchPastTemplate}
                         onInputChange={(event, newValue) => setSearchPastTemplate(newValue)}
                         onChange={(event, newValue) => {
@@ -974,7 +974,7 @@ const PrescriptionAdvanced = () => {
                     <Paper sx={{ p: "10px", width: "250px", mt: 1.25 }}>
                       <Autocomplete
                         freeSolo
-                        options={suggestions}
+                        options={suggestions || []}
                         value={searchTemplate}
                         onInputChange={(event, newValue) => setSearchTemplate(newValue)}
                         onChange={(event, newValue) => {
@@ -1119,7 +1119,7 @@ const PrescriptionAdvanced = () => {
                         fullWidth
                         options={medicineSuggestions[index] || []}
                         getOptionLabel={(option) => typeof option === 'string' ? option : option.name}
-                        inputValue={row.medicine}
+                        inputValue={row.medicine || ""}
                         onInputChange={(event, newValue, reason) => {
                           if (reason === 'input') {
                             handleMedicineInputChange(index, newValue);
