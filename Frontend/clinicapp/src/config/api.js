@@ -63,6 +63,17 @@ export const API_ENDPOINTS = {
         GRANT: (id) => `/api/consent/${id}/grant`,
         REVOKE: (id) => `/api/consent/${id}/revoke`,
         SUMMARY: (id) => `/api/consent/${id}/summary`,
+    },
+    INVOICES: {
+        CREATE: '/invoices/create',
+        BY_ID: (id) => `/invoices/${id}`,
+        BY_PRESCRIPTION: (id) => `/invoices/prescription/${id}`,
+        BY_PATIENT: (id) => `/invoices/patient/${id}`,
+        BY_DOCTOR: (id) => `/invoices/doctor/${id}`,
+        ALL: '/invoices',
+        UPDATE: (id) => `/invoices/${id}`,
+        VOID: (id) => `/invoices/${id}/void`,
+        WHATSAPP_MESSAGE: (id) => `/invoices/${id}/whatsapp-message`,
     }
 };
 

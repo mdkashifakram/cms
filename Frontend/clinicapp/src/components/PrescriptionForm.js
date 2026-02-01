@@ -13,6 +13,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import logger from '../utils/logger';
 import { API_CONFIG, API_ENDPOINTS } from '../config/api';
 import { searchMedicine } from '../utils/medicineSearch';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import InvoiceModal from './InvoiceModal';
 
 const PrescriptionAdvanced = () => {
   // Security Remediation: Removed localStorage - using HttpOnly cookies
@@ -261,7 +263,7 @@ const PrescriptionAdvanced = () => {
     }
     setMedicineSuggestions(prev => ({ ...prev, [index]: [] }));
   };
-
+  const [invoiceModalOpen, setInvoiceModalOpen] = useState(false);
   const dropdownOptions = {
     type: ["TAB.", "CAP.", "INJ.", "SYR.", "DROP"],
     dosage: ["0-0-1", "0-1-0", "1-0-0", "1-0-1", "1-1-1", "2-2-2", "0-0-2", "0-2-0", "2-0-0", "2-0-2"],
@@ -1597,11 +1599,28 @@ ${i === 0 ? "rounded-l-md" : ""} ${i === units.length - 1 ? "rounded-r-md border
             content={() => componentRef.current}
           />
 
+          {prescriptionId && (
+            <button
+              className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 flex items-center gap-1"
+              onClick={() => setInvoiceModalOpen(true)}
+            >
+              <ReceiptIcon sx={{ fontSize: 18 }} /> Invoice
+            </button>
+          )}
+
           <div style={{ display: 'none' }}>
             <DoctorPadTemplate ref={componentRef} formData={prescription} />
           </div>
         </div>
       </div>
+
+      {/* Invoice Modal */}
+      <InvoiceModal
+        open={invoiceModalOpen}
+        onClose={() => setInvoiceModalOpen(false)}
+        prescriptionId={prescriptionId}
+        prescription={prescription}
+      />
     </div>
   );
 };

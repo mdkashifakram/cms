@@ -108,6 +108,13 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/prescriptions/**").hasAnyRole("DOCTOR", "ADMIN")
                 .requestMatchers("/api/diagnosis/**").hasAnyRole("DOCTOR", "ADMIN")
                 .requestMatchers("/templates/**").hasAnyRole("DOCTOR", "ADMIN")
+
+                // Invoice endpoints
+                .requestMatchers("/invoices/create").hasAnyRole("DOCTOR", "ADMIN", "RECEPTIONIST")
+                .requestMatchers(HttpMethod.POST, "/invoices/**").hasAnyRole("DOCTOR", "ADMIN", "RECEPTIONIST")
+                .requestMatchers(HttpMethod.PATCH, "/invoices/**").hasAnyRole("DOCTOR", "ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/invoices/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/invoices/**").authenticated()
                 
                 // Receptionist/Nurse endpoints
                 .requestMatchers("/appointments/**").hasAnyRole("RECEPTIONIST", "DOCTOR", "ADMIN")
