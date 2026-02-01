@@ -1,0 +1,198 @@
+/* Overlay for the popup */
+.edit-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  backdrop-filter: blur(10px); /* Blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Hide blur background when BookAppointmentPopup is shown */
+.edit-popup-overlay.hide-blur {
+  background: none;
+  backdrop-filter: none;
+}
+
+.edit-popup-card{
+  background-color: #fff;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  width: 550px;
+}
+
+/* Popup content styling */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+/* Popup header styling */
+.edit-popup-header{
+  font-size: 0.9rem;;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  color: #f8f4f4;
+  text-align: center;
+  background-color: #2d6aa6;
+  display: flex;
+  border-radius: 4px;
+    
+}
+
+.edit-popup-header h2{
+  margin-left: auto;
+}
+
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup-header button:hover {
+  color: red;
+}
+
+/* Section title styling */
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Styling for each section */
+.popup-section {
+  margin-top: 20px;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.detail-group label {
+  font-weight: bold;
+  flex: 1;
+}
+
+.detail-group span {
+  flex: 2;
+}
+
+.edit-popup-close-btn {
+  background-color: white;
+  color: rgb(161, 160, 160);
+  padding: 8px;
+  border-radius: 500px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.edit-popup-close-btn:hover {
+  background-color: rgb(197, 195, 195);
+}
+
+.add label {
+  margin-top: 25px;
+}
+
+.add input{
+  margin-bottom: 25px;
+}
+
+.edit-button{
+  background-color: white;
+  color: rgb(161, 160, 160);
+  padding: 8px;
+  border-radius: 500px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  margin-left: 120px;
+}
+
+.edit-form-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.edit-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form-group label {
+  font-weight: 500;
+  color: #555;
+  padding: 10px;
+}
+
+.edit-form-group input,
+.edit-form-group select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f9fafc;
+  transition: all 0.3s ease;
+  max-width: 100%; /* Ensure the fields are not too wide */
+}
+
+.edit-form-group input:focus,
+.edit-form-group select:focus {
+  border-color: #007bff;
+  background-color: white;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.edit-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.add label {
+  margin-top: 25px;
+}
+
+.add input{
+  margin-bottom: 25px;
+}
+
+.edit-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 20px;
+  font-weight: 900px;
+  margin-left: 140px;
+}

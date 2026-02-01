@@ -1,0 +1,162 @@
+/* Overlay for the popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  backdrop-filter: blur(10px); /* Blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Hide blur background when BookAppointmentPopup is shown */
+.popup-overlay.hide-blur {
+  background: none;
+  backdrop-filter: none;
+}
+
+.popup-card{
+  background-color: #fff;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  width: 550px;
+  max-width: 90vw;
+}
+
+/* Popup content styling */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+/* Popup header styling */
+.popup-header {
+  font-size: 0.9rem;;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  color: #f8f4f4;
+  text-align: center;
+  background-color: #2d6aa6;
+  display: flex;
+  border-radius: 4px;
+    
+}
+
+.popup-header h2{
+  margin-left: auto;
+}
+
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup-header button:hover {
+  color: red;
+}
+
+/* Section title styling */
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Styling for each section */
+.popup-section {
+  margin-top: 20px;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.detail-group label {
+  font-weight: bold;
+  flex: 1;
+}
+
+.detail-group span {
+  flex: 2;
+}
+
+.popup-close-btn {
+  background-color: white;
+  color: rgb(161, 160, 160);
+  padding: 8px;
+  border-radius: 500px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.popup-close-btn:hover {
+  background-color: rgb(197, 195, 195);
+}
+
+.add label {
+  margin-top: 25px;
+}
+
+.add input{
+  margin-bottom: 25px;
+}
+
+.edit-button{
+  background-color: white;
+  color: rgb(161, 160, 160);
+  padding: 8px;
+  border-radius: 500px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  margin-left: auto;
+}
+
+/* Responsive popup */
+@media (max-width: 600px) {
+  .popup-card {
+    width: 95vw;
+    padding: 15px;
+  }
+
+  .popup-content {
+    width: 100%;
+  }
+
+  .form-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .popup-header h2 {
+    font-size: 1rem;
+  }
+}
+

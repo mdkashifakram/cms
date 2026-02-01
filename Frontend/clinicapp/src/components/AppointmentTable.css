@@ -1,0 +1,323 @@
+.appointment-container {
+  margin: 20px;
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'Arial', sans-serif;
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.search-bar {
+  padding: 10px;
+  width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.appointment-status {
+  display: flex;
+  gap: 20px;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-table th, .appointment-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+}
+
+.appointment-table th {
+  background-color: #f1f3f5;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.appointment-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.visitPad-btn{
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  width: 90px;
+  margin-top: 0px;
+}
+
+.set-btn, .today-btn, .refresh-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  width: 90px;
+  margin-top: 0px;
+}
+
+.set-btn {
+  background-color: #007bff;
+  color: #f8f4f4;
+}
+
+.set-btn:hover {
+  background-color: #2d6aa6;
+}
+
+.today-btn {
+  background-color: #007bff;
+  color: #f8f4f4;
+}
+
+.today-btn:hover {
+  background-color: #2d6aa6;
+}
+
+.refresh-btn {
+  background-color: #007bff;
+  color: #f8f4f4;
+}
+
+.refresh-btn:hover {
+  background-color: #2d6aa6;
+}
+
+.no-records-found {
+  text-align: center;
+  color: #8e8787;
+  font-weight: bold;
+  padding: 15px;
+  font-size: 16px;
+}
+
+/* Optional improvement for mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .appointment-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+  }
+
+  .appointment-footer {
+      justify-content: center;
+  }
+
+  .search-bar, .set-btn, .today-btn, .refresh-btn {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+}
+
+/* Container for date picker */
+.date-picker-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Customize the input field */
+.custom-date-picker {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+.custom-date-picker:focus {
+  outline: none;
+  border-color: #344299;
+  box-shadow: 0 0 5px rgba(52, 66, 153, 0.5);
+}
+
+.calendar-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #344299;
+}
+
+/* Hover effect on icon */
+.calendar-icon:hover {
+  color: #28317a;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .custom-date-picker {
+      width: 100%;
+  }
+}
+
+/*-----------------------------------------*/
+#menu-wrap {
+  position: relative;
+  height: 25px;
+  width: 25px;
+}
+
+.dots {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dots > div,
+.dots > div:after,
+.dots > div:before {
+  height: 6px;
+  width: 6px;
+  background-color: rgba(49, 49, 49, 0.8);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.dots > div {
+  position: relative;
+}
+
+.dots > div:after {
+  content: "";
+  position: absolute;
+  bottom: calc((25px / 2) - (6px / 2));
+  left: 0;
+}
+
+.dots > div:before {
+  content: "";
+  position: absolute;
+  top: calc((25px / 2) - (6px / 2));
+  left: 0;
+}
+
+.menu {
+  position: absolute;
+  right: 25px;
+  top: calc(-7px + 0px);
+  width: 0;
+  height: 0;
+  background-color: #f1f3f5;
+  padding: 20px 15px;
+  box-shadow: 2px 4px 6px rgba(49, 49, 49, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.menu.open {
+  opacity: 1;
+  visibility: visible;
+  width: 100px;
+}
+
+.menu ul {
+  list-style: none;
+}
+
+.menu ul li {
+  margin: 15px 0;
+}
+
+.menu ul li .link {
+  text-decoration: none;
+  color: rgba(49, 49, 49, 0.85);
+  opacity: 9;
+  visibility: visible;
+  transition: 0.1s;
+}
+
+.toggler {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  appearance: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.toggler:checked ~ .menu ul .link {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s ease 0.3s;
+}
+
+.toggler:checked ~ .menu ul .link:hover {
+  color: #2980b9;
+  transition: 0.2s;
+}
+
+.toggler:checked + .dots > div {
+  transform: translateX(calc(((25px / 2) - (6px / 2)) * -0.7071067812))
+    translateY(calc(((25px / 2) - (6px / 2)) * -0.7071067812));
+}
+
+.toggler:checked + .dots > div:after {
+  transform: translateX(calc(((25px / 2) - (6px / 2)) * 0.7071067812))
+    translateY(calc((2 * (25px / 2) - (6px / 2)) * 0.7071067812));
+}
+
+.toggler:checked + .dots > div:before {
+  transform: translateX(calc(2 * (((25px / 2) - (6px / 2)) * 0.7071067812)))
+    translateY(
+      calc(((25px / 2) - (6px / 2)) - (((25px / 2) - (6px / 2)) * 0.7071067812))
+    );
+}
+
+.toggler:not(:checked) ~ .menu ul .link {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 600px) {
+  #container {
+    position: absolute;
+    top: 50px;
+    width: calc(100% - 40px);
+    margin: 0;
+  }
+}
+

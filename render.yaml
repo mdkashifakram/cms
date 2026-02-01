@@ -1,0 +1,61 @@
+services:
+  # Managed PostgreSQL Database
+  - type: psql
+    name: clinic-db
+    env: docker
+    plan: free # or starter/standard for production
+    databaseName: clinicapp_prod
+    user: clinic_admin_prod
+
+  # Backend Service (Spring Boot)
+  - type: web
+    name: clinic-backend
+    env: docker
+    region: singapore # or your preferred region
+    plan: free
+    dockerContext: ./Backend/clinicapp/clinicapp
+    dockerfilePath: Dockerfile
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: postgres
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: clinic-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: clinic-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: clinic-db
+          property: password
+      - key: JWT_SECRET
+        sync: false # User will be prompted to enter this in dashboard
+      - key: JWT_EXPIRATION
+        value: 1800000
+      - key: APP_COOKIE_SECURE
+        value: true
+      - key: APP_CORS_ALLOWED_ORIGINS
+        value: "*" # SECURITY WARNING: Change to actual frontend URL after deployment (e.g., https://clinic-frontend.onrender.com)
+      # Add other third-party keys here if needed
+      - key: BOOTSTRAP_ADMIN_PASSWORD
+        sync: false
+
+  # Frontend Service (React + Nginx)
+  - type: web
+    name: clinic-frontend
+    env: docker
+    region: singapore
+    plan: free
+    dockerContext: ./Frontend/clinicapp
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: REACT_APP_API_BASE_URL
+        fromService:
+          type: web
+          name: clinic-backend
+          property: url
