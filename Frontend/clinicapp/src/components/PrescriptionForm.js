@@ -12,6 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from '@mui/icons-material/Delete';
 import logger from '../utils/logger';
 import { API_CONFIG, API_ENDPOINTS } from '../config/api';
+import { searchMedicine } from '../utils/medicineSearch';
 
 const PrescriptionAdvanced = () => {
   // Security Remediation: Removed localStorage - using HttpOnly cookies
@@ -48,7 +49,7 @@ const PrescriptionAdvanced = () => {
     complaints: "",
     pastHistory: "",
     diagnosis: [],
-    medicines: [{ type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", notes: "" }],
+    medicines: [{ type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", durationNumber: "", durationUnit: "", notes: "" }],
     advice: "",
     testRequested: "",
     nextVisit: {
@@ -137,7 +138,14 @@ const PrescriptionAdvanced = () => {
           testRequested: data.testRequested || "",
           pastMedications: data.pastMedications || "",
           generalExamination: data.generalExamination || "",
-          medicines: data.medicines || [],
+          medicines: (data.medicines || []).map(med => {
+            const parts = (med.duration || "").match(/^(\d+)\s*(Days|Weeks|Months)$/i);
+            return {
+              ...med,
+              durationNumber: parts ? parts[1] : "",
+              durationUnit: parts ? parts[2] : "",
+            };
+          }),
           referredTo: data.referrals || [],
           nextVisit: {
             number: data.nextVisitNumber || "",
@@ -204,13 +212,61 @@ const PrescriptionAdvanced = () => {
   const [searchPastTemplate, setSearchPastTemplate] = useState("");
   const [pastSuggestions, setPastSuggestions] = useState([]);
   const [search, setSearch] = useState("");
+  const [compositions, setCompositions] = useState({});
+  const [medicineSuggestions, setMedicineSuggestions] = useState({});
+  const medicineDebounceRefs = useRef({});
+
+  // Handle medicine input change with debounced autocomplete suggestions
+  const handleMedicineInputChange = (index, value) => {
+    // Update the medicine name in state
+    handleInputChange({ target: { value } }, "medicine", index, "medicines");
+
+    // Clear existing debounce for this row
+    if (medicineDebounceRefs.current[index]) {
+      clearTimeout(medicineDebounceRefs.current[index]);
+    }
+
+    if (!value || value.length < 2) {
+      setMedicineSuggestions(prev => ({ ...prev, [index]: [] }));
+      setCompositions(prev => {
+        const next = { ...prev };
+        delete next[index];
+        return next;
+      });
+      return;
+    }
+
+    medicineDebounceRefs.current[index] = setTimeout(async () => {
+      const results = await searchMedicine(value, 15);
+      setMedicineSuggestions(prev => ({ ...prev, [index]: results }));
+    }, 200);
+  };
+
+  // Handle medicine selection from autocomplete dropdown
+  const handleMedicineSelect = (index, selectedMedicine) => {
+    if (!selectedMedicine) {
+      setCompositions(prev => {
+        const next = { ...prev };
+        delete next[index];
+        return next;
+      });
+      return;
+    }
+
+    const name = typeof selectedMedicine === 'string' ? selectedMedicine : selectedMedicine.name;
+    handleInputChange({ target: { value: name } }, "medicine", index, "medicines");
+
+    if (selectedMedicine.composition) {
+      setCompositions(prev => ({ ...prev, [index]: selectedMedicine.composition }));
+    }
+    setMedicineSuggestions(prev => ({ ...prev, [index]: [] }));
+  };
 
   const dropdownOptions = {
     type: ["TAB.", "CAP.", "INJ.", "SYR.", "DROP"],
-    dosage: ["0 - 0 - 1", "1 - 0 - 1", "1 - 1 - 1", "0 - 1 - 0"],
+    dosage: ["0-0-1", "0-1-0", "1-0-0", "1-0-1", "1-1-1", "2-2-2", "0-0-2", "0-2-0", "2-0-0", "2-0-2"],
     when: ["Before Food", "After Food", "Bed Time", "Morning"],
     frequency: ["daily", "weekly", "monthly"],
-    duration: ["5 days", "7 days", "10 days", "20 days", "2 months", "8 weeks"],
     speciality: ["Cardiologist", "Neurologist", "Dermatologist", "General Physician"]
   };
 
@@ -260,7 +316,7 @@ const PrescriptionAdvanced = () => {
       ...prev,
       medicines: [
         ...prev.medicines,
-        { type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", notes: "" }
+        { type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", durationNumber: "", durationUnit: "", notes: "" }
       ]
     }));
   };
@@ -315,7 +371,7 @@ const PrescriptionAdvanced = () => {
   const handleClearRows = () => {
     setPrescription(prev => ({
       ...prev,
-      medicines: [{ type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", notes: "" }]
+      medicines: [{ type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", durationNumber: "", durationUnit: "", notes: "" }]
     }));
   };
 
@@ -1039,7 +1095,7 @@ const PrescriptionAdvanced = () => {
               </thead>
               <tbody>
                 {prescription.medicines.map((row, index) => (
-                  <tr key={index}>
+                  <tr key={index} className="align-top">
                     <td className="border p-2 text-center">{index + 1}</td>
 
                     <td className="border p-2">
@@ -1055,14 +1111,45 @@ const PrescriptionAdvanced = () => {
                       </select>
                     </td>
 
-                    <td className="border p-2">
-                      <input
-                        type="text"
-                        value={row.medicine}
-                        onChange={(e) => handleInputChange(e, "medicine", index, "medicines")}
-                        placeholder="Medicine name"
-                        className="w-full border p-1"
+                    <td className="border p-2 align-top" style={{ minWidth: '200px' }}>
+                      <Autocomplete
+                        freeSolo
+                        fullWidth
+                        options={medicineSuggestions[index] || []}
+                        getOptionLabel={(option) => typeof option === 'string' ? option : option.name}
+                        inputValue={row.medicine}
+                        onInputChange={(event, newValue, reason) => {
+                          if (reason === 'input') {
+                            handleMedicineInputChange(index, newValue);
+                          }
+                        }}
+                        onChange={(event, newValue) => {
+                          handleMedicineSelect(index, newValue);
+                        }}
+                        renderOption={(props, option) => (
+                          <li {...props} key={option.name + option.composition}>
+                            <div>
+                              <div className="font-medium">{option.name}</div>
+                              <div className="text-xs text-gray-500">{option.composition}</div>
+                            </div>
+                          </li>
+                        )}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            placeholder="Medicine name"
+                            size="small"
+                            variant="outlined"
+                            sx={{ minWidth: '180px', '& .MuiOutlinedInput-root': { padding: '2px' } }}
+                          />
+                        )}
+                        size="small"
+                        disableClearable
+                        filterOptions={(x) => x}
                       />
+                      {compositions[index] && (
+                        <div className="text-xs text-gray-500 mt-1 italic leading-tight">{compositions[index]}</div>
+                      )}
                     </td>
 
                     <td className="border p-2">
@@ -1105,16 +1192,36 @@ const PrescriptionAdvanced = () => {
                     </td>
 
                     <td className="border p-2">
-                      <select
-                        value={row.duration}
-                        onChange={(e) => handleInputChange(e, "duration", index, "medicines")}
-                        className="w-full border p-1"
-                      >
-                        <option value="">Select</option>
-                        {dropdownOptions.duration.map((opt, i) => (
-                          <option key={i} value={opt}>{opt}</option>
-                        ))}
-                      </select>
+                      <div className="flex gap-1 items-center">
+                        <input
+                          type="number"
+                          min="1"
+                          value={row.durationNumber || ""}
+                          onChange={(e) => {
+                            const num = e.target.value;
+                            const unit = row.durationUnit || "";
+                            handleInputChange({ target: { value: num } }, "durationNumber", index, "medicines");
+                            handleInputChange({ target: { value: num && unit ? `${num} ${unit}` : "" } }, "duration", index, "medicines");
+                          }}
+                          placeholder="No of"
+                          className="w-16 border p-1 text-center"
+                        />
+                        <select
+                          value={row.durationUnit || ""}
+                          onChange={(e) => {
+                            const unit = e.target.value;
+                            const num = row.durationNumber || "";
+                            handleInputChange({ target: { value: unit } }, "durationUnit", index, "medicines");
+                            handleInputChange({ target: { value: num && unit ? `${num} ${unit}` : "" } }, "duration", index, "medicines");
+                          }}
+                          className="flex-1 border p-1"
+                        >
+                          <option value="">Select</option>
+                          <option value="Days">Days</option>
+                          <option value="Weeks">Weeks</option>
+                          <option value="Months">Months</option>
+                        </select>
+                      </div>
                     </td>
 
                     <td className="border p-2">
@@ -1148,7 +1255,7 @@ const PrescriptionAdvanced = () => {
                   <td colSpan="9" className="border p-2 text-center text-blue-600 cursor-pointer"
                     onClick={addMedication}
                   >
-                    #ERROR!
+                    + Add Medicine
                   </td>
                 </tr>
               </tbody>
@@ -1405,7 +1512,7 @@ ${i === 0 ? "rounded-l-md" : ""} ${i === units.length - 1 ? "rounded-r-md border
                 ))}
                 <tr>
                   <td colSpan="5" className="border p-2 text-center text-blue-600 cursor-pointer" onClick={addReferral}>
-                    #ERROR!
+                    + Add Referral
                   </td>
                 </tr>
               </tbody>
@@ -1473,7 +1580,7 @@ ${i === 0 ? "rounded-l-md" : ""} ${i === units.length - 1 ? "rounded-r-md border
                 complaints: "",
                 pastHistory: "",
                 diagnosis: [],
-                medicines: [{ type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", notes: "" }],
+                medicines: [{ type: "", medicine: "", dosage: "", when: "", frequency: "", duration: "", durationNumber: "", durationUnit: "", notes: "" }],
                 advice: "",
                 testRequested: "",
                 nextVisit: { number: "", unit: "", date: "" },
