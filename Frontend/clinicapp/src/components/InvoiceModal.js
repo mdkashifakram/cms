@@ -299,6 +299,7 @@ const InvoiceModal = ({ open, onClose, prescriptionId, prescription }) => {
     return num.toFixed(2);
   };
 
+
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle className="flex justify-between items-center">
@@ -306,7 +307,7 @@ const InvoiceModal = ({ open, onClose, prescriptionId, prescription }) => {
           {existingInvoice ? `Invoice: ${existingInvoice.invoiceNumber}` : 'Generate Invoice'}
         </span>
         <IconButton onClick={onClose} size="small">
-          <CloseIcon />
+          <CloseIcon  sx={{ color: "#fff" }} />
         </IconButton>
       </DialogTitle>
 
@@ -362,6 +363,8 @@ const InvoiceModal = ({ open, onClose, prescriptionId, prescription }) => {
                   startIcon={<AddIcon />}
                   size="small"
                   onClick={addItem}
+                  variant="contained"
+                  color="success"
                 >
                   Add Item
                 </Button>
@@ -421,7 +424,7 @@ const InvoiceModal = ({ open, onClose, prescriptionId, prescription }) => {
                             onClick={() => removeItem(index)}
                             disabled={invoice.items.length <= 1}
                           >
-                            <DeleteIcon fontSize="small" />
+                            <DeleteIcon sx={{ fontSize: "18px", color: "#fff" }} />
                           </IconButton>
                         </Tooltip>
                       </td>
@@ -486,7 +489,7 @@ const InvoiceModal = ({ open, onClose, prescriptionId, prescription }) => {
       </DialogContent>
 
       <DialogActions className="p-3">
-        <Button onClick={onClose} color="inherit">
+        <Button onClick={onClose} color="primary" variant="contained">
           Cancel
         </Button>
 
@@ -504,7 +507,7 @@ const InvoiceModal = ({ open, onClose, prescriptionId, prescription }) => {
           trigger={() => (
             <Button
               startIcon={<PrintIcon />}
-              variant="outlined"
+              variant="contained"
               color="primary"
               disabled={loading}
             >

@@ -258,8 +258,11 @@ const BookAppointment = () => {
                 className="name-input"
               />
             </div>
+             <div className="name-input-group">
             {errors.salutation && <span className="error-message">{errors.salutation}</span>}
             {errors.name && <span className="error-message">{errors.name}</span>}
+             </div>
+           
           </div>
 
           <div className="form-group">
