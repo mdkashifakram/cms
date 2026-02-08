@@ -11,33 +11,28 @@ body {
 
 .container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: stretch;
   width: 100%;
+  max-width: 1400px;
   gap: 30px;
-  margin-top: 70px;
+  margin: 70px auto 30px auto;
+  padding: 0 30px;
+  box-sizing: border-box;
   font-family: inherit;
 }
 
-.section-one {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 24px;
-  width: 40%;
-  max-width: 550px;
-  margin-left: auto;
-  margin-right: 15px;
-}
-
+.section-one,
 .section-two {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 24px;
-  width: 40%;
-  max-width: 550px;
-  margin-right: auto;
-  margin-left: 15px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 0;
+  flex: 1 1 450px;
+  box-sizing: border-box;
 }
 
 .section-header {
@@ -125,6 +120,10 @@ body {
   display: flex;
 }
 
+/* Gender spans full row */
+.gender-full-row {
+  grid-column: span 2;
+}
 
 .gender-group input {
   display: none;
@@ -169,38 +168,169 @@ button:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 900px) {
+
+/* MacBook Air and similar laptops (1280px - 1440px) */
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1200px;
+    gap: 25px;
+    padding: 0 25px;
+  }
+
+  .section-one,
+  .section-two {
+    max-width: 480px;
+    flex: 1 1 400px;
+  }
+}
+
+/* Smaller laptops and large tablets landscape (1024px - 1279px) */
+@media (max-width: 1279px) {
+  .container {
+    max-width: 1000px;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .section-one,
+  .section-two {
+    max-width: 450px;
+    flex: 1 1 380px;
+    padding: 20px;
+  }
+
+  .form-container {
+    gap: 20px;
+  }
+}
+
+/* iPad landscape and tablets (768px - 1023px) */
+@media (max-width: 1023px) {
   .container {
     flex-direction: column;
-    gap: 20px;
-    padding: 0 15px;
+    align-items: center;
+    gap: 25px;
+    padding: 0 30px;
+    margin-top: 50px;
   }
 
   .section-one,
   .section-two {
     width: 100%;
+    max-width: 600px;
+    flex: none;
+    padding: 24px;
+  }
+
+  .form-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .form-container-exist {
+    padding: 0 30px;
+  }
+
+  .width {
+    max-width: 350px;
+  }
+}
+
+/* iPad portrait and smaller tablets (600px - 767px) */
+@media (max-width: 767px) {
+  .container {
+    gap: 20px;
+    padding: 0 20px;
+    margin-top: 40px;
+  }
+
+  .section-one,
+  .section-two {
     max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    padding: 20px;
   }
 
   .form-container {
     grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .name-with-salutation,
+  .gender-full-row {
+    grid-column: span 1;
   }
 
   button {
-    margin-top: 10px;
+    margin-top: 15px;
     width: 100%;
   }
 
   .form-container-exist {
-    margin-left: 0;
-    padding: 0 10px;
+    padding: 0 15px;
   }
 
   .width {
     width: 100%;
     max-width: 100%;
+  }
+
+  .section-header {
+    font-size: 1.3rem;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+/* Mobile devices (under 600px) */
+@media (max-width: 599px) {
+  .container {
+    padding: 0 15px;
+    margin-top: 30px;
+    gap: 15px;
+  }
+
+  .section-one,
+  .section-two {
+    padding: 15px;
+  }
+
+  .form-container {
+    gap: 12px;
+  }
+
+  .form-group label {
+    padding: 8px 10px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .name-input-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .salutation-select {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .section-header {
+    font-size: 1.2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .search-mode-info p {
+    font-size: 13px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 14px;
   }
 }
 
@@ -322,10 +452,10 @@ button:hover {
   flex: 1;
 }
 
-/* Responsive adjustments for salutation */
-@media (max-width: 900px) {
+/* Responsive adjustments for salutation on tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
   .name-with-salutation {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 
   .name-input-group {
@@ -333,7 +463,7 @@ button:hover {
   }
 
   .salutation-select {
-    width: 90px;
-    min-width: 90px;
+    width: 100px;
+    min-width: 100px;
   }
 }

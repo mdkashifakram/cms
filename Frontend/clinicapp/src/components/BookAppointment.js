@@ -243,11 +243,12 @@ const BookAppointment = () => {
                 className="salutation-select"
               >
                 <option value="">Title</option>
-                <option value="Mr">Mr</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Miss">Miss</option>
-                <option value="Sir">Sir</option>
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Dr.">Dr.</option>
                 <option value="Master">Master</option>
+                <option value="Baby">Baby</option>
               </select>
               <input
                 type="text"
@@ -258,26 +259,13 @@ const BookAppointment = () => {
                 className="name-input"
               />
             </div>
-             <div className="name-input-group">
-            {errors.salutation && <span className="error-message">{errors.salutation}</span>}
-            {errors.name && <span className="error-message">{errors.name}</span>}
-             </div>
-           
+            <div className="name-input-group">
+              {errors.salutation && <span className="error-message">{errors.salutation}</span>}
+              {errors.name && <span className="error-message">{errors.name}</span>}
+            </div>
           </div>
 
-          <div className="form-group">
-            <label>Phone Number*</label>
-            <input
-              type="text"
-              name="phoneNumber"
-              placeholder="Enter Phone Number"
-              value={formData.phoneNumber}
-              onChange={handleInputChange}
-            />
-            {errors.phoneNumber && <span className="error-message">{errors.phoneNumber}</span>}
-          </div>
-
-          <div className="form-group">
+          <div className="form-group gender-full-row">
             <label>Gender*</label>
             <div className="form-group-gender gender-group full-width">
               <input
@@ -311,6 +299,17 @@ const BookAppointment = () => {
             {errors.gender && <span className="error-message">{errors.gender}</span>}
           </div>
 
+          <div className="form-group">
+            <label>Phone Number*</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              placeholder="Enter Phone Number"
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+            />
+            {errors.phoneNumber && <span className="error-message">{errors.phoneNumber}</span>}
+          </div>
 
           <div className="form-group">
             <label>Age or DOB*</label>
@@ -323,6 +322,8 @@ const BookAppointment = () => {
             />
             {errors.age && <span className="error-message">{errors.age}</span>}
           </div>
+
+          
         </div>
 
         <div className="add form-group">
