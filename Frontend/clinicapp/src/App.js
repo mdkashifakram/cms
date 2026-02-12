@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AppointmentTable from './components/AppointmentTable';
 import BookAppointment from './components/BookAppointment';
+import Consults from './components/Consults';
 import Login from './components/Login';
 import Settings from './components/Settings';
 import './App.css';
@@ -49,6 +50,13 @@ function App() {
           </PrivateRoute>
         } />
 
+        {/* Consults route - shows completed appointments */}
+        <Route path="/dashboard/consults" element={
+          <PrivateRoute>
+            <AppointmentsLayout />
+          </PrivateRoute>
+        } />
+
         {/* Prescription form - requires DOCTOR or ADMIN role */}
         <Route path="/prescription-form" element={
           <PrivateRoute requiredRole={['DOCTOR', 'ADMIN']}>
@@ -70,6 +78,7 @@ const AppointmentsLayout = () => {
       {/* Conditionally render based on the current URL */}
       {location.pathname === '/dashboard/appointments' && <AppointmentTable />}
       {location.pathname === '/dashboard/appointments/book' && <BookAppointment />}
+      {location.pathname === '/dashboard/consults' && <Consults />}
       {location.pathname === '/prescription-form' && <PrescriptionPage />}
 
     </>

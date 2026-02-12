@@ -74,6 +74,11 @@ export const API_ENDPOINTS = {
         UPDATE: (id) => `/invoices/${id}`,
         VOID: (id) => `/invoices/${id}/void`,
         WHATSAPP_MESSAGE: (id) => `/invoices/${id}/whatsapp-message`,
+    },
+    CONSULTS: {
+        ALL: '/consults',
+        BY_PATIENT: (patientId) => `/consults/patient/${patientId}`,
+        BY_ID: (id) => `/consults/${id}`,
     }
 };
 

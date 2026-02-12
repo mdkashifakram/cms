@@ -118,6 +118,7 @@ public class SecurityConfig {
                 
                 // Receptionist/Nurse endpoints
                 .requestMatchers("/appointments/**").hasAnyRole("RECEPTIONIST", "DOCTOR", "ADMIN")
+                .requestMatchers("/consults/**").hasAnyRole("RECEPTIONIST", "DOCTOR", "ADMIN")
                 .requestMatchers(HttpMethod.POST, "/patients/**").hasAnyRole("RECEPTIONIST", "DOCTOR", "ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/patients/**").hasAnyRole("RECEPTIONIST", "DOCTOR", "ADMIN")
                 

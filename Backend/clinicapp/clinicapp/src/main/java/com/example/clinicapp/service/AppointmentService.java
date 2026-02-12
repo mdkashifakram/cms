@@ -157,4 +157,30 @@ public class AppointmentService {
     public List<Appointment> getAppointmentByStatus(String status) {
         return appointmentRepository.findByStatus(status);
     }
+
+    // ==================== CONSULTS METHODS ====================
+
+    // Get all completed appointments (consults) - ordered by most recent first
+    public List<AppointmentDto> getCompletedAppointments() {
+        List<Appointment> completed = appointmentRepository.findByStatusOrderByAppointmentTimeDesc("Completed");
+        return completed.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    // Get completed appointments by patient ID
+    public List<AppointmentDto> getCompletedAppointmentsByPatientId(Long patientId) {
+        List<Appointment> completed = appointmentRepository.findByPatient_IdAndStatus(patientId, "Completed");
+        return completed.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    // Get all appointments by patient ID (for history)
+    public List<AppointmentDto> getAppointmentsByPatientId(Long patientId) {
+        List<Appointment> appointments = appointmentRepository.findByPatient_Id(patientId);
+        return appointments.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
 }

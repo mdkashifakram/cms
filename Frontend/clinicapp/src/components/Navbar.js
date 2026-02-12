@@ -61,6 +61,11 @@ const Navbar = () => {
     navigate('/settings');
   };
 
+  const handleConsultsClick = () => {
+    // Navigate to Consults page
+    navigate('/dashboard/consults');
+  };
+
 
   return (
     <nav className="navbar">
@@ -68,7 +73,7 @@ const Navbar = () => {
         <div className="logo">ASR Clinic</div>
         <ul className="nav-items">
           <li onClick={handleAppointmentClick}>Appointments</li>
-          <li>Consults</li>
+          <li onClick={handleConsultsClick}>Consults</li>
           <li onClick={handleBookAppointmentClick}>Book Appointment</li>
 
         </ul>
