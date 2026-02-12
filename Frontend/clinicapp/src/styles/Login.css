@@ -1,0 +1,179 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f6f6f6;
+  animation: fadeIn 0.5s; /* Fade-in animation for the body */
+}
+
+.login-container {
+  margin-left:220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 120vh;
+  background-color: #f6f6f6;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.login-form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 600px;
+  height: 500px;
+  text-align: center;
+  margin-right: 40px;
+  transform: translateY(30px); /* Start position for animation */
+  opacity: 0; /* Start hidden for animation */
+  animation: slideIn 0.5s forwards; /* Slide-in animation */
+}
+
+.login-form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  width: 100%; /* Set to 100% to make it fill the entire parent width */
+  max-width: 100%; /* Prevents it from exceeding the parent width */
+}
+
+.login-form h2 {
+  margin-bottom: 30px;
+  font-size: 40px; /* Adjust this value as needed */
+  margin-top: 40px; /* Ensure there's no extra space above the header */
+  background: linear-gradient(45deg, #007bff, #20c997); /* Gradient colors */
+  -webkit-background-clip: text; /* Clip background to the text */
+  -webkit-text-fill-color: transparent; /* Makes the text color transparent to reveal the gradient */
+  background-clip: text; /* Non-webkit browsers */
+  color: transparent; /* Hide the default color */
+  animation: fadeInText 0.5s forwards; /* Fade-in animation for heading */
+}
+
+.login-form input {
+  width: 80%;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, transform 0.3s; /* Smooth transition for border color and transform */
+}
+
+.login-form input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  transform: scale(1.05); /* Slightly enlarge input on focus */
+}
+
+.login-form input:hover {
+  transform: scale(1.05); /* Pop-up effect on hover */
+}
+
+.login-form .remember-me {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.login-form .remember-me input {
+  margin-right: 10px;
+}
+
+.login-form button {
+  width: 50%;
+  padding: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-weight: bold; /* This makes the text bold */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.login-form button:hover {
+  background-color: #2d6aa6;
+  transform: scale(1.1); /* Pop-up effect on hover */
+}
+
+.login-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.login-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+.login-image {
+  width: 570px;
+  height: 530px;
+  object-fit: cover;
+  margin-left: 59px; /* Adjust this value as needed */
+  background-color: transparent;
+  margin-top: 50px;
+}
+
+/* Rectangle Box Styling */
+.rectangle-box {
+  margin-left: 105px;
+  width: 300px;
+  height: 580px; /* Height of the rectangle */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  background: linear-gradient(45deg, #0056b3, #2a4d70);
+  position: relative; /* Set position relative for the overlap effect */
+  z-index: 1;   
+}
+
+.image-container {
+  position: absolute; /* Absolute positioning */
+  top: 0; /* Adjust as necessary to position */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center alignment */
+  z-index: 2; /* Puts the image in front of the rectangle box */
+}
+
+.position {
+  position: relative;
+  width: 100%;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateY(30px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes fadeInText {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}

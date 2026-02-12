@@ -1,0 +1,40 @@
+.popup-card-pop{
+  background-color: #fff;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  width: 50%;
+}
+
+/* Popup header styling */
+.popup-header-pop {
+  font-size: 0.9rem;;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  color: #f8f4f4;
+  text-align: center;
+  background-color: #2d6aa6;
+  display: flex;
+  border-radius: 4px;   
+}
+
+.popup-header-pop h2{
+  margin-left: auto;
+}
+
+.popup-header-pop button:hover {
+  color: red;
+}
+
+.popup-close-button {
+  background-color: white;
+  color: rgb(161, 160, 160);
+  padding: 8px;
+  border-radius: 500px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  margin-left: auto;
+  margin-right: 10px;
+}

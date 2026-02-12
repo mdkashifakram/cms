@@ -1,0 +1,175 @@
+.consults-container {
+  margin: 20px;
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'Arial', sans-serif;
+}
+
+.consults-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.consults-container .search-bar {
+  padding: 10px;
+  width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.consults-container .search-bar:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.consults-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.consults-table th,
+.consults-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+}
+
+.consults-table th {
+  background-color: #f1f3f5;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.consults-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.pastVisit-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  width: 100px;
+  margin-top: 0px;
+  background-color: #28a745;
+  color: white;
+}
+
+.pastVisit-btn:hover {
+  background-color: #218838;
+}
+
+.search-btn,
+.refresh-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  width: 90px;
+  margin-top: 0px;
+}
+
+.search-btn {
+  background-color: #007bff;
+  color: #f8f4f4;
+}
+
+.search-btn:hover {
+  background-color: #2d6aa6;
+}
+
+.refresh-btn {
+  background-color: #007bff;
+  color: #f8f4f4;
+}
+
+.refresh-btn:hover {
+  background-color: #2d6aa6;
+}
+
+.no-records-found {
+  text-align: center;
+  color: #8e8787;
+  font-weight: bold;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.loading-message {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  padding: 40px;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .consults-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .consults-footer {
+    justify-content: center;
+  }
+
+  .consults-container .search-bar,
+  .search-btn,
+  .refresh-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .consults-table th,
+  .consults-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .pastVisit-btn {
+    width: 80px;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .consults-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .consults-table {
+    font-size: 12px;
+  }
+
+  .consults-table th,
+  .consults-table td {
+    padding: 8px 5px;
+  }
+}

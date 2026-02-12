@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="clinicapp/src/main/java"/>
+	<classpathentry kind="src" path="clinicapp/src/test/java"/>
+	<classpathentry kind="lib" path="C:/Users/kashi/.m2/repository/org/springframework/spring-web/6.1.11/spring-web-6.1.11.jar" sourcepath="C:/Users/kashi/.m2/repository/org/springframework/spring-web/6.1.11/spring-web-6.1.11-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework"/>
+			<attribute name="maven.artifactId" value="spring-web"/>
+			<attribute name="maven.version" value="6.1.11"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/kashi/.m2/repository/org/springframework/boot/spring-boot/3.3.2/spring-boot-3.3.2.jar" sourcepath="C:/Users/kashi/.m2/repository/org/springframework/boot/spring-boot/3.3.2/spring-boot-3.3.2-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.springframework.boot"/>
+			<attribute name="maven.artifactId" value="spring-boot"/>
+			<attribute name="maven.version" value="3.3.2"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="clinicapp/target/classes"/>
+</classpath>
